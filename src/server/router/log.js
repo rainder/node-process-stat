@@ -20,7 +20,7 @@ router
   })
   .get('/:id', function *() {
     this.body = yield Current.findOne({
-      machine_id: this.params.id
+      _id: this.params.id
     });
   })
   .delete('/:id', function *() {
