@@ -23,6 +23,12 @@ router
       _id: this.params.id
     });
   })
+  .post('/_search', function *() {
+    const conditions = this.request.body.query || {};
+    const fields = this.request.body.fields || {};
+
+    this.body = yield Current.find(conditions, fields);
+  })
   .delete('/:id', function *() {
     this.body = yield Current.remove({
       _id: this.params.id
