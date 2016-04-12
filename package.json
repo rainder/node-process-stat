@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha"
   },
-  "bin": "bin/server",
+  "bin": "bin/server.js",
   "repository": {
     "type": "git",
     "url": "git@git.justsplyt.com:skerla/process-stat.git"
