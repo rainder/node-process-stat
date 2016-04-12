@@ -71,7 +71,7 @@ function connected() {
  *
  */
 function disconnected() {
-  debug('MongoDB disconnected');
+  console.log('MongoDB disconnected');
   setTimeout(connect, 1000);
 }
 
@@ -79,5 +79,5 @@ function disconnected() {
  *
  */
 function reconnect() {
-  debug('MongoDB reconnect');
+  console.log('MongoDB reconnect');
 }
