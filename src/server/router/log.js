@@ -14,25 +14,29 @@ const validate = V.schema({
 
 module.exports = router.middleware();
 
-router.post('/', function *() {
-  const body = validate(this.request.body);
+router
+  .get('/', function *() {
+    this.body = yield Current.find();
+  })
+  .post('/', function *() {
+    const body = validate(this.request.body);
 
-  const current = yield Current.findOneAndUpdate({
-    machine_id: body.id
-  }, {
-    $currentDate: { updated: true },
-    $set: {
-      stats: body.stats,
-      metadata: body.metadata,
-      date: body.date
-    },
-    $setOnInsert: {
-      created: new Date()
-    }
-  }, {
-    upsert: true,
-    new: true
+    const current = yield Current.findOneAndUpdate({
+      machine_id: body.id
+    }, {
+      $currentDate: { updated: true },
+      $set: {
+        stats: body.stats,
+        metadata: body.metadata,
+        date: body.date
+      },
+      $setOnInsert: {
+        created: new Date()
+      }
+    }, {
+      upsert: true,
+      new: true
+    });
+
+    this.body = current;
   });
-
-  this.body = current;
-});
