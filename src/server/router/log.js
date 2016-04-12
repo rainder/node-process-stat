@@ -25,7 +25,7 @@ router
   })
   .delete('/:id', function *() {
     this.body = yield Current.remove({
-      machine_id: this.params.id
+      _id: this.params.id
     });
   })
   .post('/', function *() {
