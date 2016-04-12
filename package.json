@@ -1,0 +1,41 @@
+{
+  "name": "process-stat",
+  "version": "0.1.0",
+  "description": "Process Stat",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "bin": "bin/server",
+  "repository": {
+    "type": "git",
+    "url": "git@git.justsplyt.com:skerla/process-stat.git"
+  },
+  "keywords": [
+    "process",
+    "stat"
+  ],
+  "author": "Andrius Skerla",
+  "license": "ISC",
+  "dependencies": {
+    "co": "^4.6.0",
+    "co-request": "^1.0.0",
+    "co-try-catch": "^0.1.2",
+    "config": "^1.20.1",
+    "js-yaml": "^3.5.5",
+    "koa": "^1.2.0",
+    "koa-compose": "^2.4.0",
+    "koa-json-body": "^4.0.0",
+    "koa-mount": "^1.3.0",
+    "koa-router": "^5.4.0",
+    "lodash": "^4.10.0",
+    "mongoose": "^4.4.12",
+    "skerla-console": "^0.2.0",
+    "skerla-json-schema": "^0.1.2"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "co-mocha": "^1.1.2",
+    "mocha": "^2.4.5"
+  }
+}
