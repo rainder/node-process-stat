@@ -18,6 +18,16 @@ router
   .get('/', function *() {
     this.body = yield Current.find();
   })
+  .get('/:id', function *() {
+    this.body = yield Current.findOne({
+      machine_id: this.params.id
+    });
+  })
+  .delete('/:id', function *() {
+    this.body = yield Current.remove({
+      machine_id: this.params.id
+    });
+  })
   .post('/', function *() {
     const body = validate(this.request.body);
 
