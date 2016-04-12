@@ -50,7 +50,7 @@ module.exports = class Client {
         json: true,
         body: {
           id: this._id,
-          metadata: this._options.metadata,
+          metadata: this._metadata,
           stats: this.getStats(),
           date: new Date()
         }
