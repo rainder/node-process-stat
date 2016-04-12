@@ -57,12 +57,12 @@ module.exports = class Client {
       }));
 
       if (response.err) {
-        console.error(response.err);
+        console.error('err', response.err);
         continue;
       }
 
       if (!response.result.body.success) {
-        console.log(JSON.stringify(response.result.body.data, 0, 2));
+        console.log(response.result.statusCode, JSON.stringify(response.result.body.data, 0, 2));
       }
     }
   }
