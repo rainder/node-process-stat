@@ -24,10 +24,13 @@ router
     });
   })
   .post('/_search', function *() {
-    const conditions = this.request.body.query || {};
+    const query = this.request.body.query || {};
     const fields = this.request.body.fields || {};
 
-    this.body = yield Current.find(conditions, fields);
+    this.body = yield Current.find(query, fields);
+  })
+  .post('/_aggregate', function *() {
+    this.body = yield Current.aggregate(this.request.body).exec();
   })
   .delete('/:id', function *() {
     this.body = yield Current.remove({

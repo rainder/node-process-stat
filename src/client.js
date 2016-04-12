@@ -15,12 +15,12 @@ module.exports = class Client {
   constructor(id, options) {
     this._id = id;
     this._options = _.defaults(options, {
-      push_interval: 1000,
-      metadata: {}
+      push_interval: 1000
     });
 
     this._counter = new Counter();
     this._metric = new Metric();
+    this._metadata = options.metadata || {};
 
     this._init();
   }
@@ -104,6 +104,17 @@ module.exports = class Client {
    */
   set(key, value) {
     this._metric.set(key, value);
+    return this;
+  }
+
+  /**
+   *
+   * @param key
+   * @param value
+   * @returns {Client}
+   */
+  setMeta(key, value) {
+    this._metadata[key] = value;
     return this;
   }
 
