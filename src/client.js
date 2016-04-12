@@ -20,7 +20,7 @@ module.exports = class Client {
 
     this._counter = new Counter();
     this._metric = new Metric();
-    this._metadata = options.metadata || {};
+    this._metadata = {};
 
     this._init();
   }

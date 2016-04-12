@@ -9,7 +9,7 @@
   "bin": "bin/server.js",
   "repository": {
     "type": "git",
-    "url": "git@git.justsplyt.com:skerla/process-stat.git"
+    "url": "git@github.com:rainder/node-process-stat.git"
   },
   "keywords": [
     "process",
