@@ -51,7 +51,7 @@ class Machine {
     this._cycles = 0;
     this._absolute = {};
 
-    setInterval(this._store.bind(this), 1 * 1000);
+    setInterval(this._store.bind(this), 60 * 1000);
   }
 
   /**
