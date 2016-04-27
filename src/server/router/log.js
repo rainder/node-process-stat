@@ -3,6 +3,7 @@
 const Router = require('koa-router');
 const Current = require('./../model/current');
 const V = require('./../request-validation');
+const history = require('./../history');
 const router = new Router();
 
 const validate = V.schema({
@@ -39,6 +40,8 @@ router
   })
   .post('/', function *() {
     const body = validate(this.request.body);
+
+    history.track(body.id, body.stats);
 
     const current = yield Current.findOneAndUpdate({
       machine_id: body.id
