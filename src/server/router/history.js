@@ -17,7 +17,14 @@ module.exports = router.middleware();
 
 router
   .get('/', function *() {
-    this.body = yield HistoryMinutes.find(this.request.body || {
-      created: { $gt: new Date(Date.now() - 1000 * 60 * 60) }
+    this.body = yield HistoryMinutes.find({
+      $gt: new Date(Date.now() - 1000 * 60 * 60)
     });
+  })
+  .post('/_search', function *() {
+    const defaultSearch = {
+      created: { $gt: new Date(Date.now() - 1000 * 60 * 60) }
+    };
+    
+    this.body = yield HistoryMinutes.find(this.request.body || defaultSearch);
   });
