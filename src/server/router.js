@@ -7,7 +7,9 @@ const jsonBody = require('koa-json-body');
 module.exports = compose([
   jsonResponseWrapper,
   jsonBody({ limit: 1024 * 1024 }),
-  mount('/log', require('./router/log'))
+  mount('/log', require('./router/log')),
+  mount('/history', require('./router/history')),
+  mount('/config', require('./router/config')),
 ]);
 
 function *jsonResponseWrapper(next) {
