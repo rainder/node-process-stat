@@ -17,7 +17,7 @@ module.exports = router.middleware();
 
 router
   .get('/', function *() {
-    this.body = yield HistoryMinutes.find({
-      created: { $gt: new Date(Date.now() - 1000 * 60 * 60 * 24) }
+    this.body = yield HistoryMinutes.find(this.request.body || {
+      created: { $gt: new Date(Date.now() - 1000 * 60 * 60) }
     });
   });

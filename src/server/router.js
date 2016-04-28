@@ -5,7 +5,7 @@ const mount = require('koa-mount');
 const jsonBody = require('koa-json-body');
 
 module.exports = compose([
-  cors,
+//  cors,
   jsonResponseWrapper,
   jsonBody({ limit: 1024 * 1024 }),
   mount('/log', require('./router/log')),
