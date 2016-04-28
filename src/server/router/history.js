@@ -3,7 +3,7 @@
 const Router = require('koa-router');
 const Current = require('./../model/current');
 const V = require('./../request-validation');
-const HistoryMinutes = require('./../model/history-minutes');
+const HistoryMinutes = require('./../model/history-minute');
 const router = new Router();
 
 const validate = V.schema({
