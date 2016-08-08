@@ -21,6 +21,7 @@ module.exports = class Client {
     this._counter = new Counter();
     this._metric = new Metric();
     this._metadata = {};
+    this._close = false;
 
     this._init();
   }
@@ -40,10 +41,14 @@ module.exports = class Client {
       return;
     }
 
-    yield cb => setTimeout(cb, 1000);
+    yield cb => setTimeout(cb, 1000).unref();
 
     while (true) {
-      yield cb => setTimeout(cb, this._options.push_interval);
+      if (this._close) {
+        break;
+      }
+
+      yield cb => setTimeout(cb, this._options.push_interval).unref();
       const response = yield tryCatch(request({
         method: 'POST',
         url: `${url}/log`,
@@ -127,5 +132,9 @@ module.exports = class Client {
       counter: this._counter.getStats(),
       metric: this._metric.getStats()
     };
+  }
+
+  close() {
+    this._stop = true;
   }
 };

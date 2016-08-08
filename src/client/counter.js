@@ -6,7 +6,7 @@ module.exports = class Counter {
     this._data_per_sec = {};
     this._previous_data = {};
 
-    this._interval = setInterval(this._calculateDataPerSec.bind(this), 1000);
+    this._interval = setInterval(this._calculateDataPerSec.bind(this), 1000).unref();
   }
 
   /**
