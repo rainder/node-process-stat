@@ -41,8 +41,6 @@ router
   .post('/', function *() {
     const body = validate(this.request.body);
 
-    console.log(body);
-
     history.track(body.id, body.stats);
 
     const current = yield Current.findOneAndUpdate({
