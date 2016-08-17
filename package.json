@@ -31,7 +31,7 @@
     "lodash": "^4.10.0",
     "mongoose": "^4.4.12",
     "skerla-console": "^0.2.0",
-    "skerla-json-schema": "^0.1.2"
+    "skerla-json-schema": "0.5.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",

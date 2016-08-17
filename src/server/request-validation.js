@@ -18,6 +18,6 @@ module.exports.schema = function (schema) {
       };
     }
 
-    return validationResult.cleanup();
+    return object;
   };
 };
