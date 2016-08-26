@@ -20,6 +20,7 @@ const CONFIG = {
 };
 
 module.exports = {
+  server,
   start
 };
 
@@ -35,7 +36,7 @@ server.on('message', (msg, rinfo) => {
 
 server.on('listening', () => {
   const address = server.address();
-  console.log(`UPD Server is listening on ${address.address}:${address.port}`);
+  console.log(`UDP Server is listening on ${address.address}:${address.port}`);
 });
 
 stack.onMessage = (data) => {
