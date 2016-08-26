@@ -1,6 +1,10 @@
 server:
-  host: 0.0.0.0
-  port: 8955
+  http:
+    host: 0.0.0.0
+    port: 8955
+  udp:
+    host: 0.0.0.0
+    port: 43123
 
 mongodb:
   url: mongodb://127.0.0.1/process-stat

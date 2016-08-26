@@ -5,10 +5,11 @@ const koa = require('koa');
 const config = require('config');
 const http = require('http');
 const router = require('./server/router');
+const dgramServer = require('./dgram/server');
 
 const CONFIG = {
-  HOST: config.get('server.host'),
-  PORT: config.get('server.port')
+  HOST: config.get('server.http.host'),
+  PORT: config.get('server.http.port')
 };
 
 module.exports = {
@@ -22,8 +23,10 @@ function *launch() {
   app.use(router);
 
   yield cb => server.listen(CONFIG.PORT, CONFIG.HOST, cb);
+  
+  yield dgramServer.start();
 
-  console.log(`Server is listening on ${CONFIG.HOST}:${CONFIG.PORT}`);
+  console.log(`HTTP Server is listening on ${CONFIG.HOST}:${CONFIG.PORT}`);
 
   yield waitForSignal();
 

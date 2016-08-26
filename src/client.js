@@ -2,10 +2,14 @@
 
 const _ = require('lodash');
 const co = require('co');
+const dgram = require('dgram');
 const request = require('co-request');
 const tryCatch = require('co-try-catch');
 const Counter = require('./client/counter');
 const Metric = require('./client/metric');
+
+const Message = require('./dgram/transport-layer/message')
+const client = dgram.createSocket('udp4');
 
 module.exports = class Client {
   /**
@@ -35,12 +39,6 @@ module.exports = class Client {
    * @private
    */
   *_initStatsPusher() {
-    const url = this._options.url;
-
-    if (!url) {
-      return;
-    }
-
     yield cb => setTimeout(cb, 1000).unref();
 
     while (true) {
@@ -49,25 +47,22 @@ module.exports = class Client {
       }
 
       yield cb => setTimeout(cb, this._options.push_interval).unref();
-      const response = yield tryCatch(request({
-        method: 'POST',
-        url: `${url}/log`,
-        json: true,
-        body: {
+
+      const message = Message.createFromObject({
+        method: 'log',
+        data: {
           id: this._id,
           metadata: this._metadata,
           stats: this.getStats(),
           date: new Date()
         }
-      }));
+      });
+
+      const response = yield tryCatch(message.send(client, this._options.port, this._options.host));
 
       if (response.err) {
         console.error('err', response.err);
         continue;
-      }
-
-      if (!response.result.body.success) {
-        console.log(response.result.statusCode, JSON.stringify(response.result.body.data, 0, 2));
       }
     }
   }
@@ -135,6 +130,6 @@ module.exports = class Client {
   }
 
   close() {
-    this._stop = true;
+    this._close = true;
   }
 };

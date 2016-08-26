@@ -25,6 +25,6 @@ router
     const defaultSearch = {
       created: { $gt: new Date(Date.now() - 1000 * 60 * 60) }
     };
-    
+
     this.body = yield HistoryMinutes.find(this.request.body || defaultSearch);
   });
