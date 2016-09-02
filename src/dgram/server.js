@@ -11,7 +11,8 @@ const Message = require('./transport-layer/message');
 
 const stack = new Stack();
 const router = {
-  'log': require('./router/log')
+  'error': require('./router/error'),
+  'log': require('./router/log'),
 };
 
 const CONFIG = {
